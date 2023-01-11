@@ -1,0 +1,87 @@
+.form__genderp{
+    color: rgb(60, 60, 60);
+    text-align: center;
+}
+
+form textarea {
+    width: 80%;
+    margin: 20px;
+    padding: 20px;
+    text-align: center;
+    border: none;
+    background-color: rgb(183, 154, 212);
+    border-radius: 20px;
+    outline: none;
+}
+
+.form__button {
+    width: 200px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 0 auto;
+    height: 55px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    background-image: linear-gradient(to right, #667eea, #764ba2, #6B8DD6, #8E37D7);
+    box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
+}
+
+.form__button:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.form__button:focus {
+    outline: none;
+}
+
+.icon--contact{
+    color: aliceblue;
+    margin: 0 auto;
+    font-size: 100px;
+}
+
+.icon--addtel{
+    color: aliceblue;
+    font-size: 25px;
+    padding: 10px;
+}
+
+.button--addtel{
+    border: none;
+    color:rgb(60, 60, 60);
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    text-align: center;
+    justify-content: center;
+    width: 170px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.errors{
+    padding: 10px;
+    margin: 0 auto;
+    width: 250px;
+    color: aliceblue;
+    background-color: rgba(248, 0, 0, 0.564);
+    border-radius: 20px;
+    text-align: center;
+}

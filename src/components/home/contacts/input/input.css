@@ -1,0 +1,20 @@
+.form__input{
+    width: 80%;
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+    color: aliceblue;
+    border: none;
+    background-color: rgb(183, 154, 212);
+    border-radius: 20px;
+    outline: none;
+}
+
+.form__gender{
+    margin: 0 10px 0 20px;
+}
+
+.form_div{
+    display: flex;
+    justify-content: center;
+}
