@@ -12,9 +12,10 @@ function Home({contactList , setContactList}) {
   const [search, setSearch] = useState("");
   const [fav, setFav] = useState(false);
 
-  function handleDeleteContact(tel) {
+  function handleDeleteContact(id) {
+    console.log(id);
     const filterTel = contactList.filter((element, index) => {
-      return element.tel !== tel;
+      return element.id !== id;
     });
     setContactList(filterTel);
   }

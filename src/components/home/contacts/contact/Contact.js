@@ -64,7 +64,7 @@ function Contact({
         <button className="button--delete">
           <AiOutlineDelete
             className="icon--delete"
-            onClick={() => handleDeleteContact(contactTel)}
+            onClick={() => handleDeleteContact(contactId)}
           />
         </button>
       </div>
