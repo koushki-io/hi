@@ -7,18 +7,8 @@ import { useState } from "react";
 import Input from "./contacts/input/Input";
 import { Link } from "react-router-dom";
 
-function Home({contactList , setContactList}) {
+function Home({contactList , setContactList , search , setSearch , handleDeleteContact , fav , setFav}) {
 
-  const [search, setSearch] = useState("");
-  const [fav, setFav] = useState(false);
-
-  function handleDeleteContact(id) {
-    console.log(id);
-    const filterTel = contactList.filter((element, index) => {
-      return element.id !== id;
-    });
-    setContactList(filterTel);
-  }
 
   function handleSearch(e) {
     setSearch(e.target.value);
@@ -54,20 +44,15 @@ function Home({contactList , setContactList}) {
               <AiOutlineUserAdd className="icon--addcontact" />
             </button>
           </Link>
-          <button
-            className="button--search"
-            // onClick={(e) => {
-            //   setSearch(search);
-            // }}
-          >
+          <div className="searchBox">
             <RiSearchLine className="icon--search" />
-          </button>
-          <Input
-            type="search"
-            placeholder="نام شماره و یا ایمیل مخاطب را جست و جو کنید"
-            onChange={handleSearch}
-            value={search}
-          />
+            <Input
+              type="search"
+              placeholder="نام شماره و یا ایمیل مخاطب را جست و جو کنید"
+              onChange={handleSearch}
+              value={search}
+            />
+          </div>
         </div>
       </header>
 
@@ -92,7 +77,6 @@ function Home({contactList , setContactList}) {
             setFav={setFav}
           />
         )}
-        {/* <AddContact contactList={contactList} setContactList={setContactList} /> */}
       </main>
     </div>
   );

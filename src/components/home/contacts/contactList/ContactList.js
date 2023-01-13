@@ -1,6 +1,8 @@
 import Contact from "../contact/Contact";
 
 function ContactList({contactList , handleDeleteContact , search , setContactList , setFav}){
+
+  console.log(contactList);
     return contactList.filter((query) => 
     {if (search === "") {
         return query;
@@ -12,19 +14,24 @@ function ContactList({contactList , handleDeleteContact , search , setContactLis
       ) {
         return query;
       }
-    }).map((contact)=>
-    <Contact
-        key={contact.tel}
-        contactFav={contact.fav}
-        setFav={setFav}
-        contactId={contact.id}
-        contactName={contact.name}
-        contactLastName={contact.lastName}
-        contactTel={contact.tel}
-        contactEmail={contact.email}
-        contactAge={contact.age}
-        contactGender={contact.gender}
-        contactAddress={contact.address}
-        handleDeleteContact={handleDeleteContact} />)
+    }).map((contact)=>{
+
+   
+      return  <Contact
+          key={contact.id}
+          contactFav={contact.fav}
+          setFav={setFav}
+          contactId={contact.id}
+          contactName={contact.name}
+          contactLastName={contact.lastName}
+          contactTel={contact.tel}
+          contactEmail={contact.email}
+          contactAge={contact.age}
+          contactGender={contact.gender}
+          contactAddress={contact.address}
+          handleDeleteContact={handleDeleteContact} 
+          contactList={contactList}
+          />
+    })
 }
 export default ContactList;

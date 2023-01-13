@@ -101,6 +101,18 @@ form textarea {
 .errors{
     padding: 10px;
     margin: 0 auto;
+    margin-bottom: 10px !important;
+    width: 250px;
+    color: aliceblue;
+    background-color: rgba(248, 0, 0, 0.564);
+    border-radius: 20px;
+    text-align: center;
+}
+
+.telError{
+    padding: 10px;
+    margin: 0 auto;
+    margin-bottom: 30px !important;
     width: 250px;
     color: aliceblue;
     background-color: rgba(248, 0, 0, 0.564);

@@ -7,12 +7,11 @@ import { useNavigate, useParams } from "react-router-dom";
 
 function EditContact({ contactList, setContactList }) {
 const {id}=useParams()
+console.log(id);
 
 
 let find =contactList.find((item=>item.id==id))
 let index =contactList.findIndex((item=>item.id==id))  
-
-
 
 
 
@@ -36,9 +35,9 @@ let index =contactList.findIndex((item=>item.id==id))
   const [editAddress, setEditAddress] = useState(find.address);
 
   const [editId, setEditId] = useState(find.id);
-  // console.log(contactList.splice(index,1,newContact))
 
-  // let navigate = useNavigate();
+  let navigate = useNavigate();
+  
 
   function handleEditName(e) {
     const farsi = /^[ا-ی ]*$/i.test(e.target.value);
@@ -147,10 +146,8 @@ let index =contactList.findIndex((item=>item.id==id))
 
     setContactList(splice);
 
-    // navigate('/')
+    navigate('/')
   }
-  // console.log("splice :" , splice);
-  console.log("edit :" , contactList);
 
   return (
     <div>

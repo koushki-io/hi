@@ -6,6 +6,7 @@ import Input from "../input/Input";
 import { useNavigate } from "react-router-dom";
 
 function AddContact({ contactList, setContactList, fav, setFav }) {
+
   const [name, setName] = useState("");
   const [nameError, setNameError] = useState(false);
 
@@ -32,7 +33,9 @@ function AddContact({ contactList, setContactList, fav, setFav }) {
     idset.length ? Number(idset[idset.length - 1].id+1)  : 1
   );
 
-  // let navigate = useNavigate();
+  const [repeatedTelError , setRepeatedTelError] = useState(false);
+
+  let navigate = useNavigate();
 
   function handleName(e) {
     const farsi = /^[ا-ی ]*$/i.test(e.target.value);
@@ -107,6 +110,12 @@ function AddContact({ contactList, setContactList, fav, setFav }) {
       }
     }
 
+    const repeatedTel = contactList.find((item=>item.tel==tel))
+    if(repeatedTel){
+      setRepeatedTelError(true);
+      return;
+    }
+
     let newContact = {
       // fav,
       id,
@@ -128,8 +137,9 @@ function AddContact({ contactList, setContactList, fav, setFav }) {
     setGender("");
     setAddress("");
     setId(id + 1);
+  
 
-    // navigate('/')
+    navigate(`/contact/${id}`)
   }
 
   return (
@@ -224,6 +234,9 @@ function AddContact({ contactList, setContactList, fav, setFav }) {
           />
         </div>
         <textarea placeholder="آدرس" value={address} onChange={handleAddress} />
+        {repeatedTelError ? (
+          <div className="telError">شماره تلفن تکراری است!</div>
+        ) : null}
         <Input type="submit" className="form__button" value="ثبت" />
       </form>
     </div>

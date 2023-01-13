@@ -9,6 +9,7 @@ h1 {
 
 .icon--search{
     padding: 5px;
+    margin-left: 10px;
     color: aliceblue;
     font-size: 25px;
 }
@@ -29,8 +30,11 @@ h1 {
     -webkit-backdrop-filter: blur(5px);
 }
 
-.button--search{
+.searchBox{
+    display: flex;
+    align-items: center;
     margin: 0 10px;
+    padding: 10px;
     background: rgba(255, 255, 255, 0.2);
     border: none;
     border-radius: 16px;
@@ -43,6 +47,7 @@ h1 {
     color: aliceblue;
     font-size: 18px;
     margin: 0 5px ;
+    padding: 10px;
     background: rgba(255, 255, 255, 0.2);
     border: none;
     border-radius: 16px;
@@ -53,6 +58,7 @@ h1 {
 
 .searchBar{
     display: flex;
+    align-items: center;
     justify-content: center;
     margin: 20px 0;
 }
