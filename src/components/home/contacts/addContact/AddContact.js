@@ -29,7 +29,7 @@ function AddContact({ contactList, setContactList, fav, setFav }) {
     : [];
 
   const [id, setId] = useState(
-    idset.length ? idset[idset.length - 1].id + 1 : 1
+    idset.length ? Number(idset[idset.length - 1].id+1)  : 1
   );
 
   // let navigate = useNavigate();
@@ -108,7 +108,7 @@ function AddContact({ contactList, setContactList, fav, setFav }) {
     }
 
     let newContact = {
-      fav,
+      // fav,
       id,
       name,
       lastName,

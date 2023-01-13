@@ -8,8 +8,15 @@ import { useNavigate, useParams } from "react-router-dom";
 function EditContact({ contactList, setContactList }) {
 const {id}=useParams()
 
-let find =contactList.find((item=>item.id=id))
 
+let find =contactList.find((item=>item.id==id))
+let index =contactList.findIndex((item=>item.id==id))  
+
+
+
+
+
+  const [splice, setsplice] = useState(contactList);
   const [editName, setEditName] = useState(find.name);
   const [editNameError, setEditNameError] = useState(false);
 
@@ -29,6 +36,7 @@ let find =contactList.find((item=>item.id=id))
   const [editAddress, setEditAddress] = useState(find.address);
 
   const [editId, setEditId] = useState(find.id);
+  // console.log(contactList.splice(index,1,newContact))
 
   // let navigate = useNavigate();
 
@@ -106,7 +114,7 @@ let find =contactList.find((item=>item.id=id))
     }
 
     let newContact = {
-        fav:find.fav,
+        // fav:find.fav,
         id:editId,
         name:editName,
         lastName:editLastName,
@@ -116,7 +124,18 @@ let find =contactList.find((item=>item.id=id))
         gender:editGender,
         address:editAddress,
       };
-
+      
+      // let first=contactList.slice(0,index-1)
+      // let last=contactList.slice(index+1,2)
+      
+      
+      // let total =[]
+      // first.map((value)=>total.push(value))
+      // total.push(newContact)
+      // last.map((value)=>total.push(value))
+      
+    // console.log(total,"total");
+   
     //   contactList.filter((item)=>
     //   {if(item.tel === tel){
 
@@ -124,11 +143,13 @@ let find =contactList.find((item=>item.id=id))
     //   return item;
     // }
     //   )
+    setsplice(contactList.splice(index,1,newContact))
 
-    setContactList([...contactList, newContact]);
+    setContactList(splice);
 
     // navigate('/')
   }
+  // console.log("splice :" , splice);
   console.log("edit :" , contactList);
 
   return (
