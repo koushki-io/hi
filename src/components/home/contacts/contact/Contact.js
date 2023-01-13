@@ -12,6 +12,8 @@ function Contact({
   contactList,
   contactFav,
   setFav,
+  type,
+  contact
  
   
 }) {
@@ -19,11 +21,13 @@ function Contact({
 
 
 
-  const {id}=useParams()
-  let find =contactList.find((item=>item.id==id))
+
+ let {id}=useParams()
+
+  let find =type=="list"? contact :contactList.find((item=>item.id==id))
   
   
-  console.log(find);
+
   function handleFav(contactList,contactTel){
     contactList.forEach(function(item , i){
       if(item.tel === contactTel){
@@ -45,6 +49,8 @@ function Contact({
   }
 
   return (
+    // <></>
+   
     <div className="contact__Card">
       <div>
         <IoMdContact className="icon--contact2" />

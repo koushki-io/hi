@@ -2,7 +2,7 @@ import Contact from "../contact/Contact";
 
 function ContactList({contactList , handleDeleteContact , search , setContactList , setFav}){
 
-  console.log(contactList);
+
     return contactList.filter((query) => 
     {if (search === "") {
         return query;
@@ -18,17 +18,9 @@ function ContactList({contactList , handleDeleteContact , search , setContactLis
 
    
       return  <Contact
+           type="list"
           key={contact.id}
-          contactFav={contact.fav}
-          setFav={setFav}
-          contactId={contact.id}
-          contactName={contact.name}
-          contactLastName={contact.lastName}
-          contactTel={contact.tel}
-          contactEmail={contact.email}
-          contactAge={contact.age}
-          contactGender={contact.gender}
-          contactAddress={contact.address}
+          contact={contact}
           handleDeleteContact={handleDeleteContact} 
           contactList={contactList}
           />
