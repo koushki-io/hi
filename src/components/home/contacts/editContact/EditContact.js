@@ -6,13 +6,11 @@ import Input from "../input/Input";
 import { useNavigate, useParams } from "react-router-dom";
 
 function EditContact({ contactList, setContactList }) {
-const {id}=useParams()
-console.log(id);
 
+const {id}=useParams()
 
 let find =contactList.find((item=>item.id==id))
 let index =contactList.findIndex((item=>item.id==id))  
-
 
 
   const [splice, setsplice] = useState(contactList);
@@ -37,6 +35,33 @@ let index =contactList.findIndex((item=>item.id==id))
   const [editId, setEditId] = useState(find.id);
 
   let navigate = useNavigate();
+  
+  const [otherPhone, setOtherPhone] = useState(find.otherPhone);
+
+  // const [repeatedTelError, setRepeatedTelError] = useState(false);
+  
+  const addInput = () => {
+    setOtherPhone((s) => {
+      return [
+        ...s,
+        {
+          type: "number",
+          value: "",
+        },
+      ];
+    });
+  };
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    const index = e.target.id;
+    setOtherPhone((s) => {
+      const newArr = s.slice();
+      newArr[index].value = e.target.value;
+      return newArr;
+    });
+  };
+
   
 
   function handleEditName(e) {
@@ -104,47 +129,37 @@ let index =contactList.findIndex((item=>item.id==id))
       }
     }
 
-    if (editEmail !== "") {
-      const email = /^[\w\-.]+@\w+\.[a-z]+$/.test(e.target.value);
-      if (!email) {
-        setEditEmailError(true);
-        return;
-      }
+    if (editEmail !== "" && !/\S+@\S+\.\S+/.test(editEmail)) {
+      setEditEmailError(true);
+      return;
     }
 
+    // const repeatedTel = contactList.find((item) => item.tel == tel);
+    // if (repeatedTel) {
+    //   setRepeatedTelError(true);
+    //   console.log("true repeat");
+    //   return;
+    // }
+
     let newContact = {
-        // fav:find.fav,
+        flag:find.flag,
+        fav:find.fav,
         id:editId,
         name:editName,
         lastName:editLastName,
         tel:editTel,
+        otherPhone:otherPhone,
         age:editAge,
         email:editEmail,
         gender:editGender,
         address:editAddress,
       };
       
-      // let first=contactList.slice(0,index-1)
-      // let last=contactList.slice(index+1,2)
-      
-      
-      // let total =[]
-      // first.map((value)=>total.push(value))
-      // total.push(newContact)
-      // last.map((value)=>total.push(value))
-      
-    // console.log(total,"total");
-   
-    //   contactList.filter((item)=>
-    //   {if(item.tel === tel){
-
-    //   }
-    //   return item;
-    // }
-    //   )
     setsplice(contactList.splice(index,1,newContact))
 
     setContactList(splice);
+
+    localStorage.setItem("my-contact", JSON.stringify(contactList));
 
     navigate('/')
   }
@@ -189,14 +204,32 @@ let index =contactList.findIndex((item=>item.id==id))
         {editTelError ? (
           <div className="errors">لطفا شماره ی مخاطب را وارد کنید</div>
         ) : null}
-        <button className="button--addtel">
+        {/* <button className="button--addtel">
+          اضافه کردن تلفن دیگر
+          <IoIosAddCircleOutline className="icon--addtel" />
+        </button> */}
+
+        {otherPhone.map((item, i) => {
+          return (
+            <Input
+              className="form__input"
+              onChange={handleChange}
+              value={item.value}
+              id={i}
+              key={i}
+              type={item.type}
+              placeholder="شماره تلفن اضافه"
+            />
+          );
+        })}
+        <button className="button--addtel" type="button" onClick={addInput}>
           اضافه کردن تلفن دیگر
           <IoIosAddCircleOutline className="icon--addtel" />
         </button>
 
         <Input
           className="form__input"
-          type="email"
+          type="text"
           id="email"
           placeholder="ایمیل"
           value={editEmail}
@@ -241,6 +274,9 @@ let index =contactList.findIndex((item=>item.id==id))
           />
         </div>
         <textarea placeholder="آدرس" value={editAddress} onChange={handleEditAddress} />
+        {/* {repeatedTelError ? (
+          <div className="telError">شماره تلفن تکراری است!</div>
+        ) : null} */}
         <Input type="submit" className="form__button" value="ثبت" />
       </form>
     </div>

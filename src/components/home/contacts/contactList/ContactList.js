@@ -1,6 +1,6 @@
 import Contact from "../contact/Contact";
 
-function ContactList({contactList , handleDeleteContact , search , setContactList , setFav}){
+function ContactList({contactList , setContactList , handleDeleteContact , search , setFav}){
 
 
     return contactList.filter((query) => 
@@ -10,7 +10,8 @@ function ContactList({contactList , handleDeleteContact , search , setContactLis
         query.name.toLowerCase().includes(search.toLowerCase()) ||
         query.lastName.toLowerCase().includes(search.toLowerCase()) ||
         query.email.toLowerCase().includes(search.toLowerCase()) ||
-        query.tel.toLowerCase().includes(search.toLowerCase())
+        query.tel.toLowerCase().includes(search.toLowerCase())   
+        // || query.otherPhone.map((item)=> item.value.includes(search))
       ) {
         return query;
       }
@@ -18,11 +19,13 @@ function ContactList({contactList , handleDeleteContact , search , setContactLis
 
    
       return  <Contact
-           type="list"
+          type="list"
           key={contact.id}
           contact={contact}
           handleDeleteContact={handleDeleteContact} 
           contactList={contactList}
+          setContactList={setContactList}
+          setFav={setFav}
           />
     })
 }

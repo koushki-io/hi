@@ -10,6 +10,12 @@
     outline: none;
 }
 
+.form__input::-webkit-outer-spin-button,
+.form__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .form__gender{
     margin: 0 10px 0 20px;
 }

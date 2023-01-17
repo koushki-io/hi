@@ -3,7 +3,6 @@ import { RiSearchLine } from "react-icons/ri";
 import { AiOutlineUserAdd } from "react-icons/ai";
 import AddContact from "./contacts/addContact/AddContact";
 import ContactList from "./contacts/contactList/ContactList";
-import { useState } from "react";
 import Input from "./contacts/input/Input";
 import { Link } from "react-router-dom";
 

@@ -6,7 +6,6 @@ import Input from "../input/Input";
 import { useNavigate } from "react-router-dom";
 
 function AddContact({ contactList, setContactList, fav, setFav }) {
-
   const [name, setName] = useState("");
   const [nameError, setNameError] = useState(false);
 
@@ -30,10 +29,10 @@ function AddContact({ contactList, setContactList, fav, setFav }) {
     : [];
 
   const [id, setId] = useState(
-    idset.length ? Number(idset[idset.length - 1].id+1)  : 1
+    idset.length ? Number(idset[idset.length - 1].id + 1) : 1
   );
 
-  const [repeatedTelError , setRepeatedTelError] = useState(false);
+  const [repeatedTelError, setRepeatedTelError] = useState(false);
 
   let navigate = useNavigate();
 
@@ -50,6 +49,30 @@ function AddContact({ contactList, setContactList, fav, setFav }) {
       setLastName(e.target.value);
     }
   }
+
+
+  const [otherPhone, setOtherPhone] = useState([]);
+  const addInput = () => {
+    setOtherPhone((s) => {
+      return [
+        ...s,
+        {
+          type: "number",
+          value: "",
+        },
+      ];
+    });
+  };
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    const index = e.target.id;
+    setOtherPhone((s) => {
+      const newArr = s.slice();
+      newArr[index].value = e.target.value;
+      return newArr;
+    });
+  };
 
   function handleTel(e) {
     const mytel = /^[0-9]{0,12}$/.test(e.target.value);
@@ -102,26 +125,25 @@ function AddContact({ contactList, setContactList, fav, setFav }) {
       }
     }
 
-    if (email !== "") {
-      const email = /^[\w\-.]+@\w+\.[a-z]+$/.test(e.target.value);
-      if (!email) {
-        setEmailError(true);
-        return;
-      }
+    if (email !== "" && !/\S+@\S+\.\S+/.test(email)) {
+      setEmailError(true);
+      return;
     }
 
-    const repeatedTel = contactList.find((item=>item.tel==tel))
-    if(repeatedTel){
+    const repeatedTel = contactList.find((item) => item.tel == tel);
+    if (repeatedTel) {
       setRepeatedTelError(true);
       return;
     }
 
     let newContact = {
-      // fav,
+      flag:false,
+      fav,
       id,
       name,
       lastName,
       tel,
+      otherPhone,
       age,
       email,
       gender,
@@ -137,9 +159,8 @@ function AddContact({ contactList, setContactList, fav, setFav }) {
     setGender("");
     setAddress("");
     setId(id + 1);
-  
 
-    navigate(`/contact/${id}`)
+    navigate(`/contact/${id}`);
   }
 
   return (
@@ -182,14 +203,29 @@ function AddContact({ contactList, setContactList, fav, setFav }) {
         {telError ? (
           <div className="errors">لطفا شماره ی مخاطب را وارد کنید</div>
         ) : null}
-        <button className="button--addtel">
+
+        {/* <input  className="button--addtel" onClick={addInput} type="button" value="اضافه کردن تلفن دیگر"/> */}
+        {otherPhone.map((item, i) => {
+          return (
+            <Input
+              className="form__input"
+              onChange={handleChange}
+              value={item.value}
+              id={i}
+              key={i}
+              type={item.type}
+              placeholder="شماره تلفن اضافه"
+            />
+          );
+        })}
+        <button className="button--addtel" type="button" onClick={addInput}>
           اضافه کردن تلفن دیگر
           <IoIosAddCircleOutline className="icon--addtel" />
         </button>
 
         <Input
           className="form__input"
-          type="email"
+          type="text"
           id="email"
           placeholder="ایمیل"
           value={email}

@@ -1,11 +1,11 @@
 import "./App.css";
 import AddContact from "./home/contacts/addContact/AddContact";
 import Contact from "./home/contacts/contact/Contact";
-import ContactList from "./home/contacts/contactList/ContactList";
 import Home from "./home/Home";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useState, useEffect } from "react";
 import EditContact from "./home/contacts/editContact/EditContact";
+import BackButton from "./home/backButton/BackButton";
 
 function getDataFromLS() {
   const data = localStorage.getItem("my-contact");
@@ -17,7 +17,6 @@ function getDataFromLS() {
 }
 
 function App() {
-
   const [contactList, setContactList] = useState(getDataFromLS());
   const [search, setSearch] = useState("");
   const [fav, setFav] = useState(false);
@@ -51,15 +50,21 @@ function App() {
     {
       path: "/addcontact",
       element: (
-        <AddContact contactList={contactList} setContactList={setContactList} />
+        <AddContact contactList={contactList} setContactList={setContactList} fav={fav} setFav={setFav}/>
       ),
     },
     {
       path: "/contact/:id",
       element: (
         <>
-          <Contact handleDeleteContact={handleDeleteContact} contactList={contactList}  style={{ marginTop: 800 }} />
-          <button className="button--back">بازگشت</button>{" "}
+          <h1>مشاهده مخاطب</h1>
+          <br/><br/><br/>
+          <Contact
+            handleDeleteContact={handleDeleteContact}
+            contactList={contactList}
+            setFav={setFav}
+          />
+          <BackButton />
         </>
       ),
     },
