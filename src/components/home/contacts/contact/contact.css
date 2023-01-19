@@ -1,87 +1,87 @@
-.contact__options{
-    display: flex;
-    flex-direction: column;
-    margin: 20px 30px;
+.contact__options {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 30px;
 }
 
-.contact__options button{
-    width: 37px;
-    margin: 5px;
-    padding: 7px;
-    color: aliceblue;
-    border: none;
-    border-radius: 16px;
+.contact__options button {
+  width: 37px;
+  margin: 5px;
+  padding: 7px;
+  color: aliceblue;
+  border: none;
+  border-radius: 16px;
 }
 
-.contact__Card{
-    max-width: 700px;
-    max-height: fit-content;
-    margin: 0 auto;
-    margin-bottom: 20px;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+.contact__Card {
+  max-width: 700px;
+  max-height: fit-content;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
-.icon--eye{
-    font-size: 20px;
+.icon--eye {
+  font-size: 20px;
 }
 
-.icon--edit{
-    font-size: 20px;
+.icon--edit {
+  font-size: 20px;
 }
 
-.icon--delete{
-    font-size: 20px;
+.icon--delete {
+  font-size: 20px;
 }
 
-.button--eye{
-    background-color: rgba(116, 79, 168, 0.75);
+.button--eye {
+  background-color: rgba(116, 79, 168, 0.75);
 }
 
-.button--edit{
-    background-color: rgb(247, 201, 17);
+.button--edit {
+  background-color: rgb(247, 201, 17);
 }
 
-.button--delete{
-    background-color: rgb(196, 20, 20);
+.button--delete {
+  background-color: rgb(196, 20, 20);
 }
 
-.contact__infolist ul{
-    list-style: none;
-    color: rgb(60, 60, 60);
+.contact__infolist ul {
+  list-style: none;
+  color: rgb(60, 60, 60);
 }
 
-.contact__infolist ul li{
-    margin: 10px 0;
+.contact__infolist ul li {
+  margin: 10px 0;
 }
 
-.contact__fav{
-    margin: 0px 10px 20px 0px;
+.contact__fav {
+  margin: 0px 10px 20px 0px;
 }
 
-.fav{
-    font-size: 40px;
-    color: aliceblue;
+.fav {
+  font-size: 40px;
+  color: aliceblue;
 }
 
-.tel__a{
-    color: rgb(60, 60, 60);
-    text-decoration: none;
+.tel__a {
+  color: rgb(60, 60, 60);
+  text-decoration: none;
 }
 
-.email__a{
-    color: rgb(60, 60, 60);
-    text-decoration: none;
+.email__a {
+  color: rgb(60, 60, 60);
+  text-decoration: none;
 }
 
-.icon--contact2{
-    color: aliceblue;
-    margin: 0 20px 0 0;
-    font-size: 85px;
+.icon--contact2 {
+  color: aliceblue;
+  margin: 0 20px 0 0;
+  font-size: 85px;
 }

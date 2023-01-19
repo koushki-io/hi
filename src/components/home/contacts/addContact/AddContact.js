@@ -5,7 +5,7 @@ import { useState } from "react";
 import Input from "../input/Input";
 import { useNavigate } from "react-router-dom";
 
-function AddContact({ contactList, setContactList, fav, setFav }) {
+function AddContact({ contactList, setContactList }) {
   const [name, setName] = useState("");
   const [nameError, setNameError] = useState(false);
 
@@ -28,8 +28,19 @@ function AddContact({ contactList, setContactList, fav, setFav }) {
     ? JSON.parse(localStorage.getItem("my-contact"))
     : [];
 
+    let findIDArry=[]
+
+    contactList.map((value) => {
+      findIDArry.push(value.id)
+    })
+
+    findIDArry.sort((a, b) => b-a)
+
+
+    console.log(findIDArry);
+
   const [id, setId] = useState(
-    idset.length ? Number(idset[idset.length - 1].id + 1) : 1
+    findIDArry.length? findIDArry[0]+1 : 1
   );
 
   const [repeatedTelError, setRepeatedTelError] = useState(false);
@@ -49,7 +60,6 @@ function AddContact({ contactList, setContactList, fav, setFav }) {
       setLastName(e.target.value);
     }
   }
-
 
   const [otherPhone, setOtherPhone] = useState([]);
   const addInput = () => {
@@ -137,8 +147,7 @@ function AddContact({ contactList, setContactList, fav, setFav }) {
     }
 
     let newContact = {
-      flag:false,
-      fav,
+      flag: false,
       id,
       name,
       lastName,
@@ -204,7 +213,6 @@ function AddContact({ contactList, setContactList, fav, setFav }) {
           <div className="errors">لطفا شماره ی مخاطب را وارد کنید</div>
         ) : null}
 
-        {/* <input  className="button--addtel" onClick={addInput} type="button" value="اضافه کردن تلفن دیگر"/> */}
         {otherPhone.map((item, i) => {
           return (
             <Input

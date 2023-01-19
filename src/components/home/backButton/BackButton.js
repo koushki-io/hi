@@ -5,9 +5,7 @@ function BackButton() {
   return (
     <Link to="/">
       <div className="div__button--back">
-        <button className="button--back">
-          بازگشت
-        </button>
+        <button className="button--back">بازگشت</button>
       </div>
     </Link>
   );

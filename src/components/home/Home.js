@@ -6,25 +6,29 @@ import ContactList from "./contacts/contactList/ContactList";
 import Input from "./contacts/input/Input";
 import { Link } from "react-router-dom";
 
-function Home({contactList , setContactList , search , setSearch , handleDeleteContact , fav , setFav}) {
-
-
+function Home({
+  contactList,
+  setContactList,
+  search,
+  setSearch,
+  handleDeleteContact,
+}) {
   function handleSearch(e) {
     setSearch(e.target.value);
   }
 
-  function handleSort(){
+  function handleSort() {
     const sortedContactList = [...contactList].sort((a, b) =>
-    a.name > b.name ? 1 : -1,
-  );
-    setContactList(sortedContactList)
+      a.name > b.name ? 1 : -1
+    );
+    setContactList(sortedContactList);
   }
 
-  function handleReversedSort(){
+  function handleReversedSort() {
     const reversedSortContactList = [...contactList].sort((a, b) =>
-    a.name > b.name ? -1 : 1,
-  );
-    setContactList(reversedSortContactList)
+      a.name > b.name ? -1 : 1
+    );
+    setContactList(reversedSortContactList);
   }
 
   return (
@@ -32,7 +36,7 @@ function Home({contactList , setContactList , search , setSearch , handleDeleteC
       <header>
         <h1>دفترچه تلفن</h1>
         <div className="searchBar">
-          <button className="button--sort" onClick={handleSort} >
+          <button className="button--sort" onClick={handleSort}>
             به ترتیب الفبا
           </button>
           <button className="button--sort" onClick={handleReversedSort}>
@@ -62,8 +66,6 @@ function Home({contactList , setContactList , search , setSearch , handleDeleteC
             <AddContact
               contactList={contactList}
               setContactList={setContactList}
-              fav={fav}
-              setFav={setFav}
             />
           </>
         ) : (
@@ -72,8 +74,6 @@ function Home({contactList , setContactList , search , setSearch , handleDeleteC
             handleDeleteContact={handleDeleteContact}
             contactList={contactList}
             setContactList={setContactList}
-            fav={fav}
-            setFav={setFav}
           />
         )}
       </main>

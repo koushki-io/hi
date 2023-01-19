@@ -1,4 +1,4 @@
-import './editContact.css';
+import "./editContact.css";
 import { IoMdContact } from "react-icons/io";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { useState } from "react";
@@ -6,12 +6,10 @@ import Input from "../input/Input";
 import { useNavigate, useParams } from "react-router-dom";
 
 function EditContact({ contactList, setContactList }) {
+  const { id } = useParams();
 
-const {id}=useParams()
-
-let find =contactList.find((item=>item.id==id))
-let index =contactList.findIndex((item=>item.id==id))  
-
+  let find = contactList.find((item) => item.id == id);
+  let index = contactList.findIndex((item) => item.id == id);
 
   const [splice, setsplice] = useState(contactList);
   const [editName, setEditName] = useState(find.name);
@@ -35,11 +33,9 @@ let index =contactList.findIndex((item=>item.id==id))
   const [editId, setEditId] = useState(find.id);
 
   let navigate = useNavigate();
-  
+
   const [otherPhone, setOtherPhone] = useState(find.otherPhone);
 
-  // const [repeatedTelError, setRepeatedTelError] = useState(false);
-  
   const addInput = () => {
     setOtherPhone((s) => {
       return [
@@ -61,8 +57,6 @@ let index =contactList.findIndex((item=>item.id==id))
       return newArr;
     });
   };
-
-  
 
   function handleEditName(e) {
     const farsi = /^[ا-ی ]*$/i.test(e.target.value);
@@ -108,17 +102,17 @@ let index =contactList.findIndex((item=>item.id==id))
     e.preventDefault();
 
     if (editName === "") {
-        setEditNameError(true);
+      setEditNameError(true);
       return;
     }
 
     if (editLastName === "") {
-        setEditLastNameError(true);
+      setEditLastNameError(true);
       return;
     }
 
     if (editTel === "") {
-        setEditTelError(true);
+      setEditTelError(true);
       return;
     }
 
@@ -134,34 +128,26 @@ let index =contactList.findIndex((item=>item.id==id))
       return;
     }
 
-    // const repeatedTel = contactList.find((item) => item.tel == tel);
-    // if (repeatedTel) {
-    //   setRepeatedTelError(true);
-    //   console.log("true repeat");
-    //   return;
-    // }
-
     let newContact = {
-        flag:find.flag,
-        fav:find.fav,
-        id:editId,
-        name:editName,
-        lastName:editLastName,
-        tel:editTel,
-        otherPhone:otherPhone,
-        age:editAge,
-        email:editEmail,
-        gender:editGender,
-        address:editAddress,
-      };
-      
-    setsplice(contactList.splice(index,1,newContact))
+      flag: find.flag,
+      id: editId,
+      name: editName,
+      lastName: editLastName,
+      tel: editTel,
+      otherPhone: otherPhone,
+      age: editAge,
+      email: editEmail,
+      gender: editGender,
+      address: editAddress,
+    };
+
+    setsplice(contactList.splice(index, 1, newContact));
 
     setContactList(splice);
 
     localStorage.setItem("my-contact", JSON.stringify(contactList));
 
-    navigate('/')
+    navigate("/");
   }
 
   return (
@@ -204,10 +190,6 @@ let index =contactList.findIndex((item=>item.id==id))
         {editTelError ? (
           <div className="errors">لطفا شماره ی مخاطب را وارد کنید</div>
         ) : null}
-        {/* <button className="button--addtel">
-          اضافه کردن تلفن دیگر
-          <IoIosAddCircleOutline className="icon--addtel" />
-        </button> */}
 
         {otherPhone.map((item, i) => {
           return (
@@ -261,6 +243,8 @@ let index =contactList.findIndex((item=>item.id==id))
             id="male"
             onChange={handleEditGender}
             name="gender"
+            checked={editGender=="مرد"}
+          
           />
 
           <Input
@@ -271,12 +255,15 @@ let index =contactList.findIndex((item=>item.id==id))
             id="female"
             onChange={handleEditGender}
             name="gender"
+            checked={editGender=="زن"}
+
           />
         </div>
-        <textarea placeholder="آدرس" value={editAddress} onChange={handleEditAddress} />
-        {/* {repeatedTelError ? (
-          <div className="telError">شماره تلفن تکراری است!</div>
-        ) : null} */}
+        <textarea
+          placeholder="آدرس"
+          value={editAddress}
+          onChange={handleEditAddress}
+        />
         <Input type="submit" className="form__button" value="ثبت" />
       </form>
     </div>

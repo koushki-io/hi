@@ -19,7 +19,6 @@ function getDataFromLS() {
 function App() {
   const [contactList, setContactList] = useState(getDataFromLS());
   const [search, setSearch] = useState("");
-  const [fav, setFav] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("my-contact", JSON.stringify(contactList));
@@ -42,15 +41,13 @@ function App() {
           search={search}
           setSearch={setSearch}
           handleDeleteContact={handleDeleteContact}
-          fav={fav}
-          setFav={setFav}
         />
       ),
     },
     {
       path: "/addcontact",
       element: (
-        <AddContact contactList={contactList} setContactList={setContactList} fav={fav} setFav={setFav}/>
+        <AddContact contactList={contactList} setContactList={setContactList} />
       ),
     },
     {
@@ -58,11 +55,13 @@ function App() {
       element: (
         <>
           <h1>مشاهده مخاطب</h1>
-          <br/><br/><br/>
+          <br />
+          <br />
+          <br />
           <Contact
             handleDeleteContact={handleDeleteContact}
             contactList={contactList}
-            setFav={setFav}
+            setContactList={setContactList}
           />
           <BackButton />
         </>
